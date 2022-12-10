@@ -189,6 +189,42 @@ end TCL_Generic;
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
+    <comp lib="0" loc="(230,200)" name="Splitter">
+      <a name="appear" val="center"/>
+      <a name="bit0" val="none"/>
+      <a name="bit1" val="none"/>
+      <a name="bit10" val="0"/>
+      <a name="bit11" val="0"/>
+      <a name="bit12" val="none"/>
+      <a name="bit13" val="none"/>
+      <a name="bit14" val="none"/>
+      <a name="bit15" val="none"/>
+      <a name="bit16" val="none"/>
+      <a name="bit17" val="none"/>
+      <a name="bit18" val="none"/>
+      <a name="bit19" val="none"/>
+      <a name="bit2" val="none"/>
+      <a name="bit20" val="none"/>
+      <a name="bit21" val="none"/>
+      <a name="bit22" val="none"/>
+      <a name="bit23" val="none"/>
+      <a name="bit24" val="none"/>
+      <a name="bit25" val="0"/>
+      <a name="bit26" val="0"/>
+      <a name="bit27" val="0"/>
+      <a name="bit28" val="0"/>
+      <a name="bit29" val="0"/>
+      <a name="bit3" val="none"/>
+      <a name="bit30" val="0"/>
+      <a name="bit31" val="1"/>
+      <a name="bit4" val="none"/>
+      <a name="bit5" val="none"/>
+      <a name="bit6" val="none"/>
+      <a name="bit7" val="0"/>
+      <a name="bit8" val="0"/>
+      <a name="bit9" val="0"/>
+      <a name="incoming" val="32"/>
+    </comp>
     <comp lib="0" loc="(620,200)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
@@ -198,5 +234,68 @@ end TCL_Generic;
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
+    <comp lib="0" loc="(620,200)" name="Splitter">
+      <a name="appear" val="center"/>
+      <a name="bit1" val="0"/>
+      <a name="bit10" val="0"/>
+      <a name="bit11" val="1"/>
+      <a name="bit12" val="2"/>
+      <a name="bit13" val="3"/>
+      <a name="bit14" val="4"/>
+      <a name="bit15" val="5"/>
+      <a name="bit16" val="6"/>
+      <a name="bit17" val="7"/>
+      <a name="bit18" val="8"/>
+      <a name="bit19" val="9"/>
+      <a name="bit2" val="0"/>
+      <a name="bit20" val="10"/>
+      <a name="bit21" val="11"/>
+      <a name="bit22" val="12"/>
+      <a name="bit23" val="13"/>
+      <a name="bit24" val="14"/>
+      <a name="bit25" val="15"/>
+      <a name="bit26" val="16"/>
+      <a name="bit27" val="17"/>
+      <a name="bit28" val="18"/>
+      <a name="bit29" val="19"/>
+      <a name="bit3" val="0"/>
+      <a name="bit30" val="20"/>
+      <a name="bit31" val="21"/>
+      <a name="bit4" val="0"/>
+      <a name="bit5" val="0"/>
+      <a name="bit6" val="0"/>
+      <a name="bit7" val="0"/>
+      <a name="bit8" val="0"/>
+      <a name="bit9" val="0"/>
+      <a name="facing" val="west"/>
+      <a name="fanout" val="22"/>
+      <a name="incoming" val="32"/>
+    </comp>
+    <wire from="(250,190)" to="(560,190)"/>
+    <wire from="(250,200)" to="(560,200)"/>
+    <wire from="(560,200)" to="(560,300)"/>
+    <wire from="(560,300)" to="(600,300)"/>
+    <wire from="(560,90)" to="(560,190)"/>
+    <wire from="(560,90)" to="(600,90)"/>
+    <wire from="(600,100)" to="(600,110)"/>
+    <wire from="(600,110)" to="(600,120)"/>
+    <wire from="(600,120)" to="(600,130)"/>
+    <wire from="(600,130)" to="(600,140)"/>
+    <wire from="(600,140)" to="(600,150)"/>
+    <wire from="(600,150)" to="(600,160)"/>
+    <wire from="(600,160)" to="(600,170)"/>
+    <wire from="(600,170)" to="(600,180)"/>
+    <wire from="(600,180)" to="(600,190)"/>
+    <wire from="(600,190)" to="(600,200)"/>
+    <wire from="(600,200)" to="(600,210)"/>
+    <wire from="(600,210)" to="(600,220)"/>
+    <wire from="(600,220)" to="(600,230)"/>
+    <wire from="(600,230)" to="(600,240)"/>
+    <wire from="(600,240)" to="(600,250)"/>
+    <wire from="(600,250)" to="(600,260)"/>
+    <wire from="(600,260)" to="(600,270)"/>
+    <wire from="(600,270)" to="(600,280)"/>
+    <wire from="(600,280)" to="(600,290)"/>
+    <wire from="(600,290)" to="(600,300)"/>
   </circuit>
 </project>
