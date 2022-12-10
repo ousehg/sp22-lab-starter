@@ -17,16 +17,15 @@ void transpose_naive(int n, int blocksize, int *dst, int *src)
 void transpose_blocking(int n, int blocksize, int *dst, int *src)
 {
     // YOUR CODE HERE
-    for (int x = 0; x < n; x = x + blocksize)
-    { // iterate using block size
-        for (int y = 0; y < n; y = y + blocksize)
-        { // iterate using block size
-            // Now begin transposition of each block
-            for (int i = x; i < x + blocksize; i++)
+    for (int x = 0; x < n; x += blocksize)
+    {
+        for (int y = 0; y < n; y += blocksize)
+        {
+            for (int i = x; i < x + blocksize; i += 1)
             {
-                for (int j = y; j < y + blocksize; j++)
+                for (int j = y; j < y + blocksize; j += 1)
                 {
-                    if (i >= n || j >= n)
+                    if (i > n || j > n)
                     {
                         continue;
                     }
