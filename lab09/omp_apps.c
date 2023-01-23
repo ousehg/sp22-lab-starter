@@ -138,6 +138,7 @@ double dotp_manual_optimized(double *x, double *y, int arr_size)
     {
         global_sum += x[i] * y[i];
     }
+    return global_sum;
 }
 
 // Reduction Keyword
