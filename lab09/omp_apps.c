@@ -109,18 +109,20 @@ double dotp_manual_optimized(double *x, double *y, int arr_size)
     // TODO: Implement this function
     // Do NOT use the `reduction` directive here!
     int total_thread = omp_get_num_threads();
+    int size = 1;
 #pragma omp parallel
     {
-        int total_thread = omp_get_num_threads();
+        total_thread = omp_get_num_threads();
+        size = ARRAY_SIZE / total_thread;
         int thread_id = omp_get_thread_num();
         double sum = 0.0;
-        for (int i = 0; i < arr_size / total_thread * total_thread; i += total_thread)
+        for (int i = 0; i < total_thread * size; i += size)
         {
-            if (i * total_thread / arr_size != thread_id)
+            if (i / size != thread_id)
             {
                 continue;
             }
-            for (int j = i; j < i + total_thread; j++)
+            for (int j = i; j < i + size; j++)
             {
                 sum += x[j] * y[j];
             }
@@ -132,11 +134,10 @@ double dotp_manual_optimized(double *x, double *y, int arr_size)
         }
     }
     // tail case
-    for (int i = arr_size / total_thread; i < arr_size; i++)
+    for (int i = total_thread; i < ARRAY_SIZE; i++)
     {
         global_sum += x[i] * y[i];
     }
-    return global_sum;
 }
 
 // Reduction Keyword
