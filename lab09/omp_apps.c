@@ -67,12 +67,13 @@ void v_add_optimized_chunks(double *x, double *y, double *z)
     {
         total_thread = omp_get_num_threads();
         int thread_id = omp_get_thread_num();
-        for(int i=0; i<ARRAY_SIZE / total_thread * total_thread; i += total_thread)
+        for (int i = 0; i < ARRAY_SIZE / total_thread * total_thread; i += total_thread)
         {
-            if (i * total_thread / ARRAY_SIZE != thread_id) {
+            if (i * total_thread / ARRAY_SIZE != thread_id)
+            {
                 continue;
             }
-            for(int j=i; j<i+total_thread; j++)
+            for (int j = i; j < i + total_thread; j++)
             {
                 z[j] = x[j] + y[j];
             }
@@ -103,20 +104,30 @@ double dotp_naive(double *x, double *y, int arr_size)
 double dotp_manual_optimized(double *x, double *y, int arr_size)
 {
     double global_sum = 0.0;
-// TODO: Implement this function
-// Do NOT use the `reduction` directive here!
+    // TODO: Implement this function
+    // Do NOT use the `reduction` directive here!
+    int total_thread = omp_get_num_threads();
 #pragma omp parallel
     {
-        for (int i = 0; i < arr_size; i++)
+        total_thread = omp_get_num_threads();
+        int thread_id = omp_get_thread_num();
+        for (int i = 0; i < ARRAY_SIZE / total_thread * total_thread; i += total_thread)
         {
-            int total_thread = omp_get_num_threads();
-            int thread_id = omp_get_thread_num();
-            if (i % total_thread == thread_id)
+            if (i * total_thread / ARRAY_SIZE != thread_id)
+            {
+                continue;
+            }
+            for (int j = i; j < i + total_thread; j++)
             {
 #pragma omp critical
-                global_sum += x[i] * y[i];
+                global_sum += x[j] * y[j];
             }
         }
+    }
+    // tail case
+    for (int i = ARRAY_SIZE / total_thread; i < ARRAY_SIZE; i++)
+    {
+        global_sum += x[i] * y[i];
     }
     return global_sum;
 }
