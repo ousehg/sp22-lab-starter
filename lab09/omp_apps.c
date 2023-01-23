@@ -82,7 +82,7 @@ void v_add_optimized_chunks(double *x, double *y, double *z)
         }
     }
     // tail case
-    for (int i = total_thread; i < ARRAY_SIZE; i++)
+    for (int i = total_thread * size; i < ARRAY_SIZE; i++)
     {
         z[i] = x[i] + y[i];
     }
@@ -108,7 +108,7 @@ double dotp_manual_optimized(double *x, double *y, int arr_size)
     double global_sum = 0.0;
     // TODO: Implement this function
     // Do NOT use the `reduction` directive here!
-    int total_thread = omp_get_num_threads();
+    int total_thread = 1;
     int size = 1;
 #pragma omp parallel
     {
@@ -134,7 +134,7 @@ double dotp_manual_optimized(double *x, double *y, int arr_size)
         }
     }
     // tail case
-    for (int i = total_thread; i < arr_size; i++)
+    for (int i = total_thread * size; i < arr_size; i++)
     {
         global_sum += x[i] * y[i];
     }
