@@ -63,7 +63,7 @@ void v_add_optimized_chunks(double* x, double* y, double* z) {
         // tail case
         for(int i=ARRAY_SIZE / total_thread; i < ARRAY_SIZE; i++) 
         {
-            z[i] = x[i] + y[i]
+            z[i] = x[i] + y[i];
         }
     }
 }
