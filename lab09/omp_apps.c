@@ -36,14 +36,14 @@ void v_add_optimized_adjacent(double* x, double* y, double* z) {
     // Do NOT use the `for` directive here!
     #pragma omp parallel
     {
+        int total_thread = omp_get_num_threads();
+        int thread_id = omp_get_thread_num();
         for(int i=0; i<ARRAY_SIZE; i++)
         {
-            int total_thread = omp_get_num_threads();
-            int thread_id = omp_get_thread_num();
-            if(i % total_thread == thread_id)
+            if((i % total_thread) == thread_id)
             {
                 z[i] = x[i] + y[i];
-		        printf("z: %i, index: %i, thread id: %i \n", z[i], i, thread_id);
+	//	printf("adjacent - index: %i, thread id: %i, total thread: %i \n", i, thread_id, total_thread);
             }
         }
     }
@@ -62,14 +62,14 @@ void v_add_optimized_chunks(double* x, double* y, double* z) {
             for(int j=i; j<i+total_thread; j++)
             {
                 z[j] = x[j] + y[j];
-                printf("z: %i, index: %i, thread id: %i \n", z[j], j, thread_id);
+//                printf("z: %i, index: %i, thread id: %i \n", z[j], j, thread_id);
             }
-        }
-        // tail case
-        for(int i=ARRAY_SIZE / total_thread; i < ARRAY_SIZE; i++) 
-        {
-            z[i] = x[i] + y[i];
-        }
+            // tail case
+       	    for(int i=ARRAY_SIZE / total_thread; i < ARRAY_SIZE; i++) 
+            {
+		z[i] = x[i] + y[i]; 
+	    }
+	}
     }
 }
 
