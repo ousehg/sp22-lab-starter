@@ -112,7 +112,7 @@ double dotp_manual_optimized(double *x, double *y, int arr_size)
         int total_thread = omp_get_num_threads();
         int thread_id = omp_get_thread_num();
         double sum = 0.0;
-        for (int i = 0; i < ARRAY_SIZE; i++)
+        for (int i = 0; i < arr_size; i++)
         {
             if (i % total_thread != thread_id)
             {
