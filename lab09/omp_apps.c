@@ -88,23 +88,15 @@ double dotp_manual_optimized(double* x, double* y, int arr_size) {
     // Do NOT use the `reduction` directive here!
     #pragma omp parallel
     {
-        int total_thread = omp_get_num_threads();
-        for(int i=0; i<ARRAY_SIZE / total_thread * total_thread; i += total_thread)
+        for (int i = 0; i < arr_size; i ++)
         {
-            int sum = 0.0;
-            for(int j=i; j<i+total_thread; j++)
+            int total_thread = omp_get_num_threads();
+            int thread_id = omp_get_thread_num();
+            if(i % total_thread == thread_id)
             {
-                sum += x[j] * y[j];
+                #pragma omp critical
+                global_sum += x[i] * y[i];
             }
-            #pragma omp critical
-            global_sum += sum;
-        }
-
-        // tail case
-        for(int i=ARRAY_SIZE / total_thread; i < ARRAY_SIZE; i++) 
-        {
-            #pragma omp critical
-            global_sum += x[i] * y[i];
         }
     }
     return global_sum;
