@@ -60,12 +60,13 @@ void v_add_optimized_adjacent(double *x, double *y, double *z)
 // Chunks Method
 void v_add_optimized_chunks(double *x, double *y, double *z)
 {
-// TODO: Implement this function
-// Do NOT use the `for` directive here!
+    // TODO: Implement this function
+    // Do NOT use the `for` directive here!
+    int total_thread = omp_get_num_threads();
 #pragma omp parallel
     {
-        int total_thread = omp_get_num_threads();
         int thread_id = omp_get_thread_num();
+        total_thread = omp_get_num_threads();
         for (int i = 0; i < ARRAY_SIZE / total_thread * total_thread; i += total_thread)
         {
             if (i / total_thread != thread_id)
@@ -80,7 +81,12 @@ void v_add_optimized_chunks(double *x, double *y, double *z)
         }
     }
     // tail case
-    for (int i = ARRAY_SIZE / total_thread; i < ARRAY_SIZE; i++)
+    int last = 0;
+    for (int i = 0; i < ARRAY_SIZE / total_thread * total_thread; i += total_thread)
+    {
+        last = i + total_thread;
+    }
+    for (int i = last; i < ARRAY_SIZE; i++)
     {
         z[i] = x[i] + y[i];
     }
