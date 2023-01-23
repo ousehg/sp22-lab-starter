@@ -111,9 +111,9 @@ double dotp_manual_optimized(double *x, double *y, int arr_size)
     {
         total_thread = omp_get_num_threads();
         int thread_id = omp_get_thread_num();
-        for (int i = 0; i < ARRAY_SIZE / total_thread * total_thread; i += total_thread)
+        for (int i = 0; i < arr_size / total_thread * total_thread; i += total_thread)
         {
-            if (i * total_thread / ARRAY_SIZE != thread_id)
+            if (i * total_thread / arr_size != thread_id)
             {
                 continue;
             }
@@ -125,7 +125,7 @@ double dotp_manual_optimized(double *x, double *y, int arr_size)
         }
     }
     // tail case
-    for (int i = ARRAY_SIZE / total_thread; i < ARRAY_SIZE; i++)
+    for (int i = arr_size / total_thread; i < arr_size; i++)
     {
         global_sum += x[i] * y[i];
     }
