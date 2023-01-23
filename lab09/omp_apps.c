@@ -134,7 +134,7 @@ double dotp_manual_optimized(double *x, double *y, int arr_size)
         }
     }
     // tail case
-    for (int i = total_thread; i < ARRAY_SIZE; i++)
+    for (int i = total_thread; i < arr_size; i++)
     {
         global_sum += x[i] * y[i];
     }
