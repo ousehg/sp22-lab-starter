@@ -116,13 +116,10 @@ double dotp_manual_optimized(double *x, double *y, int arr_size)
         size = arr_size / total_thread;
         int thread_id = omp_get_thread_num();
         double sum = 0.0;
+#pragma omp for             
         for (int i = 0; i < total_thread * size; i += size)
         {
-            if (i / size != thread_id)
-            {
-                continue;
-            }
-            for (int j = i; j < i + size; j++)
+	    for (int j = i; j < i + size; j++)
             {
                 sum += x[j] * y[j];
             }
